@@ -875,7 +875,7 @@ function RivalsUI:Window(opts)
 	MiniButton.AnchorPoint = Vector2.new(0, 1)
 	MiniButton.Size = UDim2.new(0, 90, 0, 90)
 	MiniButton.Position = UDim2.new(0, 16, 1, -16)
-	MiniButton.Visible = false
+	MiniButton.Visible = true
 	MiniButton.ScaleType = Enum.ScaleType.Fit
 	MiniButton.ImageTransparency = 0
 	MiniButton.Parent = ScreenGui
@@ -886,7 +886,6 @@ function RivalsUI:Window(opts)
 	function RivalsUI:toggleMinimize()
 		minimized = not minimized
 		Main.Visible = not minimized
-		MiniButton.Visible = minimized
 	end
 
 	MinimizeButton.MouseButton1Click:Connect(function()
@@ -1210,7 +1209,7 @@ function RivalsUI:Window(opts)
 				uiVisible = true
 				ScreenGui.Enabled = true
 				Main.Visible = not minimized
-				MiniButton.Visible = minimized
+				MiniButton.Visible = true
 			else
 				-- toggle between minimized and normal when visible
 				RivalsUI:toggleMinimize()
@@ -2383,7 +2382,7 @@ function Section:Slider(opts)
 	local dragInput
 
 	DragButton.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			if input.UserInputState ~= Enum.UserInputState.Begin then return end
 			dragging = true
 			dragInput = input
@@ -2393,21 +2392,21 @@ function Section:Slider(opts)
 	end)
 
 	DragButton.InputEnded:Connect(function(input)
-		if input == dragInput and input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input == dragInput and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 			dragging = false
 			dragInput = nil
 		end
 	end)
 
 	DragButton.InputChanged:Connect(function(input)
-		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 			local rel = (input.Position.X - Bar.AbsolutePosition.X) / Bar.AbsoluteSize.X
 			setValue(min + (max - min) * rel, true)
 		end
 	end)
 
 	UserInputService.InputEnded:Connect(function(input)
-		if input == dragInput and input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input == dragInput and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 			dragging = false
 			dragInput = nil
 		end
