@@ -2746,11 +2746,16 @@ function a:CreateWindow(ak)
         local ConfigSection = SettingsTab:CreateSection("Configuration")
         
         local configSlotDropdown
+        local existingConfigs = k:GetConfigList()
+        local defaultConfig = existingConfigs[1] or nil
+        if defaultConfig then
+            k.CurrentConfig = defaultConfig
+        end
         
         configSlotDropdown = ConfigSection:CreateDropdown({
             Name = "Selected Config",
-            Items = k:GetConfigList(),
-            Default = nil,
+            Items = existingConfigs,
+            Default = defaultConfig,
             Callback = function(slot)
                 k.CurrentConfig = slot
             end
@@ -2775,17 +2780,30 @@ function a:CreateWindow(ak)
             Callback = function()
                 if configName ~= '' then 
                     k.CurrentConfig = configName
-                    local configs = k:GetConfigList()
-                    if not table.find(configs, configName) then
-                        table.insert(configs, configName)
-                    end
-                    configSlotDropdown:Refresh(configs)
-                    configSlotDropdown:Set(configName)
+                    if aC:SaveConfig() then
+                        local configs = k:GetConfigList()
+                        configSlotDropdown:Refresh(configs)
+                        configSlotDropdown:Set(configName)
 
+                        aC:Notify({
+                            Title = "Config Created",
+                            Description = "Configuration '" .. configName .. "' created successfully!",
+                            Type = "success",
+                            Duration = 3
+                        })
+                    else
+                        aC:Notify({
+                            Title = "Create Failed",
+                            Description = "Could not create configuration",
+                            Type = "error",
+                            Duration = 3
+                        })
+                    end
+                else
                     aC:Notify({
-                        Title = "Config Saved",
-                        Description = "Configuration created successfully!",
-                        Type = "success",
+                        Title = "Create Failed",
+                        Description = "Please enter a config name first",
+                        Type = "error",
                         Duration = 3
                     })
                 end 
@@ -2796,11 +2814,27 @@ function a:CreateWindow(ak)
             Name = "Save Config",
             Icon = "save",
             Callback = function()
-                if aC:SaveConfig() then
+                if k.CurrentConfig and k.CurrentConfig ~= "" then
+                    if aC:SaveConfig() then
+                        aC:Notify({
+                            Title = "Config Saved",
+                            Description = "Configuration '" .. k.CurrentConfig .. "' saved successfully!",
+                            Type = "success",
+                            Duration = 3
+                        })
+                    else
+                        aC:Notify({
+                            Title = "Save Failed",
+                            Description = "Could not save configuration",
+                            Type = "error",
+                            Duration = 3
+                        })
+                    end
+                else
                     aC:Notify({
-                        Title = "Config Saved",
-                        Description = "Configuration saved successfully!",
-                        Type = "success",
+                        Title = "Save Failed",
+                        Description = "Please select or create a config first",
+                        Type = "error",
                         Duration = 3
                     })
                 end
@@ -2811,17 +2845,26 @@ function a:CreateWindow(ak)
             Name = "Load Config",
             Icon = "folder-open",
             Callback = function()
-                if aC:LoadConfig() then
-                    aC:Notify({
-                        Title = "Config Loaded",
-                        Description = "Configuration loaded successfully!",
-                        Type = "success",
-                        Duration = 3
-                    })
+                if k.CurrentConfig and k.CurrentConfig ~= "" then
+                    if aC:LoadConfig() then
+                        aC:Notify({
+                            Title = "Config Loaded",
+                            Description = "Configuration '" .. k.CurrentConfig .. "' loaded successfully!",
+                            Type = "success",
+                            Duration = 3
+                        })
+                    else
+                        aC:Notify({
+                            Title = "Load Failed",
+                            Description = "Config '" .. k.CurrentConfig .. "' not found or corrupted",
+                            Type = "error",
+                            Duration = 3
+                        })
+                    end
                 else
                     aC:Notify({
                         Title = "Load Failed",
-                        Description = "Could not load configuration",
+                        Description = "Please select a config first",
                         Type = "error",
                         Duration = 3
                     })
@@ -2833,14 +2876,38 @@ function a:CreateWindow(ak)
             Name = "Delete Config",
             Icon = "trash-2",
             Callback = function()
-                if aC:DeleteConfig(k.CurrentConfig) then
+                if k.CurrentConfig and k.CurrentConfig ~= "" then
+                    local configToDelete = k.CurrentConfig
+                    if aC:DeleteConfig(configToDelete) then
+                        aC:Notify({
+                            Title = "Config Deleted",
+                            Description = "Configuration '" .. configToDelete .. "' deleted!",
+                            Type = "warning",
+                            Duration = 3
+                        })
+                        local configs = k:GetConfigList()
+                        configSlotDropdown:Refresh(configs)
+                        if #configs > 0 then
+                            k.CurrentConfig = configs[1]
+                            configSlotDropdown:Set(configs[1])
+                        else
+                            k.CurrentConfig = ""
+                        end
+                    else
+                        aC:Notify({
+                            Title = "Delete Failed",
+                            Description = "Could not delete configuration",
+                            Type = "error",
+                            Duration = 3
+                        })
+                    end
+                else
                     aC:Notify({
-                        Title = "Config Deleted",
-                        Description = "Configuration deleted!",
-                        Type = "warning",
+                        Title = "Delete Failed",
+                        Description = "Please select a config first",
+                        Type = "error",
                         Duration = 3
                     })
-                    configSlotDropdown:Refresh(k:GetConfigList())
                 end
             end
         })
