@@ -1971,7 +1971,8 @@ function Section:Paragraph(opts)
 		BodyLabel.Size = UDim2.new(1, 0, 0, math.max(BodyLabel.TextBounds.Y, 18))
 	end)
 
-	local Update = function(newBody)
+	local Update = function(newHeader, newBody)
+		HeaderLabel.Text = newHeader
 		BodyLabel.Text = newBody
 	end
 
