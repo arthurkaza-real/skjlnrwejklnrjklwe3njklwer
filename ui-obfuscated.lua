@@ -1971,7 +1971,11 @@ function Section:Paragraph(opts)
 		BodyLabel.Size = UDim2.new(1, 0, 0, math.max(BodyLabel.TextBounds.Y, 18))
 	end)
 
-	return { Header = HeaderLabel, Body = BodyLabel }
+	local Update = function(newBody)
+		BodyLabel.Text = newBody
+	end
+
+	return { Header = HeaderLabel, Body = BodyLabel, Update = Update }
 end
 
 -- Paragraph-style button with optional icon
