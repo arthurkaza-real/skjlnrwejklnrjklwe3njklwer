@@ -725,7 +725,6 @@ function RivalsUI:Window(opts)
 	TabScroll.ScrollingDirection = Enum.ScrollingDirection.Y
 	TabScroll.ClipsDescendants = true
 	TabScroll.Active = true
-	TabScroll.TouchPanEnabled = true
 	TabScroll.Parent = Sidebar
 
 	local TabButtonsHolder = Instance.new("Frame")
@@ -1330,7 +1329,6 @@ function TabGroup:Tab(opts)
 	Page.ScrollingDirection = Enum.ScrollingDirection.Y
 	Page.ClipsDescendants = true
 	Page.Active = true
-	Page.TouchPanEnabled = true
 	Page.Parent = self.Window.PageContainer
 
 	local PagePadding = Instance.new("UIPadding")
@@ -2597,7 +2595,6 @@ function Section:Dropdown(opts)
 	ListFrame.ScrollingEnabled = true
 	ListFrame.ScrollingDirection = Enum.ScrollingDirection.Y
 	ListFrame.Active = true
-	ListFrame.TouchPanEnabled = true
 	createRoundCorner(6, ListFrame)
 	applyStroke(ListFrame, RivalsUI.Theme.Outline, 1, 0.8)
 	ListFrame.Parent = Overlay
