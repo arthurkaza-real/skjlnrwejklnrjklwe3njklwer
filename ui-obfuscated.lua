@@ -3707,7 +3707,7 @@ function RivalsUI:buildConfigTabUI(tab, window)
 
 	local SearchBoxHolder = Instance.new("Frame")
 	SearchBoxHolder.Name = "SearchBoxHolder"
-	SearchBoxHolder.Size = UDim2.new(1, -40, 1, 0)
+	SearchBoxHolder.Size = UDim2.new(1, -80, 1, 0)
 	SearchBoxHolder.BackgroundColor3 = Color3.fromRGB(23, 24, 35)
 	SearchBoxHolder.BorderSizePixel = 0
 	createRoundCorner(8, SearchBoxHolder)
@@ -3752,6 +3752,22 @@ function RivalsUI:buildConfigTabUI(tab, window)
 	createRoundCorner(8, CreateButton)
 	applyStroke(CreateButton, Color3.fromRGB(20, 80, 50), 1, 0.3)
 	CreateButton.Parent = TopRow
+
+	local PasteButton = Instance.new("TextButton")
+	PasteButton.Name = "PasteConfigButton"
+	PasteButton.Size = UDim2.new(0, 32, 0, 30)
+	PasteButton.BackgroundColor3 = Color3.fromRGB(60, 120, 180)
+	PasteButton.AutoButtonColor = true
+	PasteButton.Text = ""
+	PasteButton.BorderSizePixel = 0
+	createRoundCorner(8, PasteButton)
+	applyStroke(PasteButton, Color3.fromRGB(30, 60, 90), 1, 0.3)
+	PasteButton.Parent = TopRow
+
+	local PasteIcon = CreateIcon("lucide:clipboard-paste", UDim2.fromOffset(16, 16), Color3.fromRGB(235, 235, 240))
+	PasteIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+	PasteIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+	PasteIcon.Parent = PasteButton
 
 	-- extra small spacer between top row and list
 	local Spacer = Instance.new("Frame")
@@ -3881,6 +3897,23 @@ function RivalsUI:buildConfigTabUI(tab, window)
 					DefaultBtn = makeSmallButton("Make Default", Color3.fromRGB(60, 55, 35), RivalsUI.Theme.Warning)
 				end
 
+				-- Copy config button
+				local CopyBtn = Instance.new("TextButton")
+				CopyBtn.Name = "CopyConfigButton"
+				CopyBtn.Size = UDim2.new(0, 26, 0, 24)
+				CopyBtn.BackgroundColor3 = Color3.fromRGB(60, 120, 180)
+				CopyBtn.AutoButtonColor = true
+				CopyBtn.BorderSizePixel = 0
+				CopyBtn.Text = ""
+				createRoundCorner(6, CopyBtn)
+				applyStroke(CopyBtn, Color3.fromRGB(30, 60, 90), 1, 0.4)
+				CopyBtn.Parent = ButtonsRow
+
+				local CopyIcon = CreateIcon("lucide:copy", UDim2.fromOffset(14, 14), Color3.fromRGB(235, 235, 245))
+				CopyIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+				CopyIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+				CopyIcon.Parent = CopyBtn
+
 				-- New delete icon button
 				local DeleteBtn = Instance.new("TextButton")
 				DeleteBtn.Name = "DeleteConfigButton"
@@ -3951,6 +3984,34 @@ function RivalsUI:buildConfigTabUI(tab, window)
 					end)
 				end
 
+				CopyBtn.MouseButton1Click:Connect(function()
+					local path = getConfigFilePath(cfgName)
+					if not isfile(path) then
+						window:Notify({
+							Title = "Copy Failed",
+							Description = "Config file not found.",
+							Lifetime = 4,
+						})
+						return
+					end
+					
+					local configText = readfile(path)
+					if setclipboard then
+						setclipboard(configText)
+						window:Notify({
+							Title = window.Settings.Title,
+							Description = "Config '" .. cfgName .. "' copied to clipboard.",
+							Lifetime = 3,
+						})
+					else
+						window:Notify({
+							Title = "Copy Failed",
+							Description = "Clipboard API not available.",
+							Lifetime = 4,
+						})
+					end
+				end)
+
 				DeleteBtn.MouseButton1Click:Connect(function()
 					window:Dialog({
 						Title = "Delete Config",
@@ -4011,6 +4072,126 @@ function RivalsUI:buildConfigTabUI(tab, window)
 						Lifetime = 4,
 					})
 				end
+			end,
+		})
+	end)
+
+	PasteButton.MouseButton1Click:Connect(function()
+		window:InputDialog({
+			Title = "Paste Config",
+			Description = "Paste the config text directly, or paste a Discord attachment URL.",
+			Placeholder = "Paste config text or Discord URL...",
+			ConfirmText = "Import",
+			Callback = function(input)
+				if not input or input == "" then return end
+				
+				local configText = input
+				local isUrl = string.match(input, "^https?://") ~= nil
+				
+				-- If it's a URL, fetch it
+				if isUrl then
+					local success, result = pcall(function()
+						return game.HttpGetAsync and game:HttpGetAsync(input) or HttpService:GetAsync(input)
+					end)
+					
+					if not success or not result then
+						window:Notify({
+							Title = "Import Failed",
+							Description = "Could not fetch config from URL. Check the URL and try again.",
+							Lifetime = 4,
+						})
+						return
+					end
+					
+					configText = result
+				end
+				
+				-- Validate JSON
+				local ok, configData = pcall(function()
+					return HttpService:JSONDecode(configText)
+				end)
+				
+				if not ok or type(configData) ~= "table" then
+					window:Notify({
+						Title = "Import Failed",
+						Description = "Invalid config format. Make sure it's valid JSON.",
+						Lifetime = 4,
+					})
+					return
+				end
+				
+				-- Ask for config name
+				window:InputDialog({
+					Title = "Name Config",
+					Description = "Enter a name for the imported config.",
+					Placeholder = "ImportedConfig",
+					ConfirmText = "Save",
+					Callback = function(nameInput)
+							local finalName = sanitizeConfigName(nameInput)
+							if finalName == "" then return end
+							
+							-- Check if config already exists
+							local path = getConfigFilePath(finalName)
+							if isfile and isfile(path) then
+								window:Dialog({
+									Title = "Config Exists",
+									Description = "Config '" .. finalName .. "' already exists. Overwrite?",
+									Callback = function()
+										local ok, err = pcall(function()
+											if not (writefile and isfolder and makefolder) then
+												error("Executor missing file APIs")
+											end
+											ensureFolder(RivalsUI.Config.Folder)
+											local cfgFolder = getConfigsFolder()
+											ensureFolder(cfgFolder)
+											writefile(path, configText)
+										end)
+										
+										if ok then
+											window:Notify({
+												Title = window.Settings.Title,
+												Description = "Config '" .. finalName .. "' imported successfully.",
+												Lifetime = 3,
+											})
+											refreshList()
+										else
+											window:Notify({
+												Title = "Import Failed",
+												Description = err or "Could not save config.",
+												Lifetime = 4,
+											})
+										end
+									end,
+								})
+							else
+								-- Save new config
+								local ok, err = pcall(function()
+									if not (writefile and isfolder and makefolder) then
+										error("Executor missing file APIs")
+									end
+									ensureFolder(RivalsUI.Config.Folder)
+									local cfgFolder = getConfigsFolder()
+									ensureFolder(cfgFolder)
+									writefile(path, configText)
+								end)
+								
+								if ok then
+									window:Notify({
+										Title = window.Settings.Title,
+										Description = "Config '" .. finalName .. "' imported successfully.",
+										Lifetime = 3,
+									})
+									refreshList()
+								else
+									window:Notify({
+										Title = "Import Failed",
+										Description = err or "Could not save config.",
+										Lifetime = 4,
+									})
+								end
+							end
+						end,
+					})
 			end,
 		})
 	end)
