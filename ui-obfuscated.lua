@@ -716,8 +716,10 @@ function RivalsUI:Window(opts)
 	TabScroll.Name = "TabScroll"
 	TabScroll.BackgroundTransparency = 1
 	TabScroll.BorderSizePixel = 0
+	TabScroll.AnchorPoint = Vector2.new(0, 0)
 	TabScroll.Position = UDim2.new(0, 0, 0, SidebarHeader.Size.Y.Offset)
-	TabScroll.Size = UDim2.new(1, 0, 1, -(SidebarHeader.Size.Y.Offset + 50))
+	-- Footer is 30px tall + 10px margin = 40px total space needed
+	TabScroll.Size = UDim2.new(1, 0, 1, -(SidebarHeader.Size.Y.Offset + SidebarFooter.Size.Y.Offset + 10))
 	TabScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
 	TabScroll.ScrollBarThickness = 4
 	TabScroll.ScrollBarImageColor3 = Color3.fromRGB(60, 61, 80)
@@ -731,6 +733,8 @@ function RivalsUI:Window(opts)
 	TabButtonsHolder.Name = "TabButtonsHolder"
 	TabButtonsHolder.BackgroundTransparency = 1
 	TabButtonsHolder.Size = UDim2.new(1, 0, 0, 0)
+	TabButtonsHolder.AnchorPoint = Vector2.new(0, 0)
+	TabButtonsHolder.Position = UDim2.new(0, 0, 0, 0)
 	TabButtonsHolder.Parent = TabScroll
 
 	local TabButtonsLayout = Instance.new("UIListLayout")
@@ -742,11 +746,16 @@ function RivalsUI:Window(opts)
 	TabButtonsPadding.PaddingTop = UDim.new(0, 16)
 	TabButtonsPadding.PaddingLeft = UDim.new(0, 8)
 	TabButtonsPadding.PaddingRight = UDim.new(0, 8)
+	TabButtonsPadding.PaddingBottom = UDim.new(0, 8)
 	TabButtonsPadding.Parent = TabButtonsHolder
 
 	TabButtonsLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-		TabButtonsHolder.Size = UDim2.new(1, 0, 0, TabButtonsLayout.AbsoluteContentSize.Y + 8)
-		TabScroll.CanvasSize = UDim2.new(0, 0, 0, TabButtonsLayout.AbsoluteContentSize.Y + 16)
+		local contentHeight = TabButtonsLayout.AbsoluteContentSize.Y
+		local paddingTop = TabButtonsPadding.PaddingTop.Offset
+		local paddingBottom = TabButtonsPadding.PaddingBottom.Offset
+		local totalHeight = contentHeight + paddingTop + paddingBottom
+		TabButtonsHolder.Size = UDim2.new(1, 0, 0, totalHeight)
+		TabScroll.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
 	end)
 
 	-- Content Area
@@ -1379,13 +1388,15 @@ function TabGroup:Tab(opts)
 
 		LeftColumn = Instance.new("Frame")
 		LeftColumn.Name = "LeftColumn"
-		LeftColumn.Size = UDim2.new(0.5, -6, 1, 0)
+		LeftColumn.Size = UDim2.new(0.5, -6, 0, 0)
+		LeftColumn.AutomaticSize = Enum.AutomaticSize.Y
 		LeftColumn.BackgroundTransparency = 1
 		LeftColumn.Parent = Columns
 
 		RightColumn = Instance.new("Frame")
 		RightColumn.Name = "RightColumn"
-		RightColumn.Size = UDim2.new(0.5, -6, 1, 0)
+		RightColumn.Size = UDim2.new(0.5, -6, 0, 0)
+		RightColumn.AutomaticSize = Enum.AutomaticSize.Y
 		RightColumn.BackgroundTransparency = 1
 		RightColumn.Parent = Columns
 
