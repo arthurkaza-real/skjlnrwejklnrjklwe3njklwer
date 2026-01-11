@@ -1342,6 +1342,7 @@ function TabGroup:Tab(opts)
 
 	local PagePadding = Instance.new("UIPadding")
 	PagePadding.PaddingTop = UDim.new(0, 12)
+	PagePadding.PaddingBottom = UDim.new(0, 12)
 	PagePadding.PaddingLeft = UDim.new(0, 12)
 	PagePadding.PaddingRight = UDim.new(0, 12)
 	PagePadding.Parent = Page
@@ -1365,7 +1366,9 @@ function TabGroup:Tab(opts)
 
 		local function updateCanvasConfig()
 			Columns.Size = UDim2.new(1, 0, 0, LeftLayout.AbsoluteContentSize.Y)
-			Page.CanvasSize = UDim2.new(0, 0, 0, LeftLayout.AbsoluteContentSize.Y + 24)
+			local paddingTop = PagePadding.PaddingTop.Offset
+			local paddingBottom = PagePadding.PaddingBottom.Offset
+			Page.CanvasSize = UDim2.new(0, 0, 0, LeftLayout.AbsoluteContentSize.Y + paddingTop + paddingBottom)
 		end
 
 		LeftLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateCanvasConfig)
@@ -1413,7 +1416,9 @@ function TabGroup:Tab(opts)
 		local function updateCanvas()
 			local maxHeight = math.max(LeftLayout.AbsoluteContentSize.Y, RightLayout.AbsoluteContentSize.Y)
 			Columns.Size = UDim2.new(1, 0, 0, maxHeight)
-			Page.CanvasSize = UDim2.new(0, 0, 0, maxHeight + 24)
+			local paddingTop = PagePadding.PaddingTop.Offset
+			local paddingBottom = PagePadding.PaddingBottom.Offset
+			Page.CanvasSize = UDim2.new(0, 0, 0, maxHeight + paddingTop + paddingBottom)
 		end
 
 		LeftLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateCanvas)
