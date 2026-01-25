@@ -2970,7 +2970,7 @@ local Library = {
                                 -- Apply to the resolved ImageLabel inside
                                 local img = ResolveIconImage(iconCreated)
                                 if img then
-                                    TweenService:Create(img, TweenInfo.new(Library.Animation.Time, Library.Animation.Easing), props):Play()
+                                    TweenService:Create(img, TweenInfo.new(Library.Animation.Time, Enum.EasingStyle[Library.Animation.Style], Enum.EasingDirection[Library.Animation.Direction]), props):Play()
                                 end
                             end, 
                             ChangeItemTheme = function(self, themeProps) 
