@@ -15,7 +15,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 local HttpService = game:GetService("HttpService")
 local TweenService = game:GetService("TweenService")
-local CoreGui = cloneref(game:GetService("CoreGui"))
+local CoreGui = game:GetService("CoreGui")
 --#endregion
 
 local IconsURL = "https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"
