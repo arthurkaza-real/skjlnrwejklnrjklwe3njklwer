@@ -15,7 +15,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 local HttpService = game:GetService("HttpService")
 local TweenService = game:GetService("TweenService")
-local CoreGui = game:GetService("CoreGui")
+local CoreGui = cloneref(game:GetService("CoreGui"))
 --#endregion
 
 local IconsURL = "https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"
@@ -2485,6 +2485,173 @@ local Library = {
                     Items["MainFrame"]:Tween({Size = OriginalSize})
                     Items["MainFrame"]:Tween({Position = UDim2.new(0, Camera.ViewportSize.X / 3 - 100, 0, Camera.ViewportSize.Y / 3 - 100)})
                 end
+            end
+
+            -- Notification System
+            local NotificationHolder = Instance.new("Frame")
+            NotificationHolder.Name = "NotificationHolder"
+            NotificationHolder.BackgroundTransparency = 1
+            NotificationHolder.Position = UDim2.new(1, -20, 1, -20)
+            NotificationHolder.AnchorPoint = Vector2.new(1, 1)
+            NotificationHolder.Size = UDim2.new(0, 300, 1, -40)
+            NotificationHolder.Parent = Library.Holder.Instance
+
+            local NotificationLayout = Instance.new("UIListLayout")
+            NotificationLayout.Padding = UDim.new(0, 8)
+            NotificationLayout.FillDirection = Enum.FillDirection.Vertical
+            NotificationLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+            NotificationLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+            NotificationLayout.SortOrder = Enum.SortOrder.LayoutOrder
+            NotificationLayout.Parent = NotificationHolder
+
+            function Window:Notify(Data)
+                Data = Data or {}
+                local Title = Data.Title or "Notification"
+                local Description = Data.Description or ""
+                local Duration = Data.Duration or 5
+                local Icon = Data.Icon or "bell"
+
+                -- Main notification frame
+                local NotifFrame = Instance.new("Frame")
+                NotifFrame.Name = "Notification"
+                NotifFrame.BackgroundColor3 = Library.Theme and Library.Theme.Background or Color3.fromRGB(18, 18, 20)
+                NotifFrame.Size = UDim2.new(1, 0, 0, 0)
+                NotifFrame.AutomaticSize = Enum.AutomaticSize.Y
+                NotifFrame.ClipsDescendants = true
+                NotifFrame.Parent = NotificationHolder
+
+                local NotifCorner = Instance.new("UICorner")
+                NotifCorner.CornerRadius = UDim.new(0, 6)
+                NotifCorner.Parent = NotifFrame
+
+                local NotifStroke = Instance.new("UIStroke")
+                NotifStroke.Color = Library.Theme and Library.Theme.Outline or Color3.fromRGB(37, 37, 37)
+                NotifStroke.Thickness = 1
+                NotifStroke.Parent = NotifFrame
+
+                local NotifPadding = Instance.new("UIPadding")
+                NotifPadding.PaddingTop = UDim.new(0, 10)
+                NotifPadding.PaddingBottom = UDim.new(0, 10)
+                NotifPadding.PaddingLeft = UDim.new(0, 12)
+                NotifPadding.PaddingRight = UDim.new(0, 12)
+                NotifPadding.Parent = NotifFrame
+
+                -- Accent bar on left
+                local AccentBar = Instance.new("Frame")
+                AccentBar.Name = "AccentBar"
+                AccentBar.Size = UDim2.new(0, 3, 1, 0)
+                AccentBar.Position = UDim2.new(0, -12, 0, -10)
+                AccentBar.BackgroundColor3 = Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)
+                AccentBar.BorderSizePixel = 0
+                AccentBar.Parent = NotifFrame
+
+                local AccentGradient = Instance.new("UIGradient")
+                AccentGradient.Color = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0, Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)),
+                    ColorSequenceKeypoint.new(1, Library.Theme and Library.Theme["Accent End"] or Color3.fromRGB(114, 75, 130))
+                }
+                AccentGradient.Rotation = 90
+                AccentGradient.Parent = AccentBar
+
+                -- Icon container
+                local IconContainer = Instance.new("Frame")
+                IconContainer.Name = "IconContainer"
+                IconContainer.BackgroundTransparency = 1
+                IconContainer.Size = UDim2.new(0, 18, 0, 18)
+                IconContainer.Position = UDim2.new(0, 0, 0, 0)
+                IconContainer.Parent = NotifFrame
+
+                -- Apply icon
+                ApplyIconToContainer(IconContainer, Icon, UDim2.new(1, 0, 1, 0), Library.Theme and Library.Theme.Text or Color3.fromRGB(230, 230, 235))
+
+                -- Title label
+                local TitleLabel = Instance.new("TextLabel")
+                TitleLabel.Name = "Title"
+                TitleLabel.BackgroundTransparency = 1
+                TitleLabel.Position = UDim2.new(0, 26, 0, 0)
+                TitleLabel.Size = UDim2.new(1, -26, 0, 18)
+                TitleLabel.Font = Enum.Font.GothamBold
+                TitleLabel.Text = Title
+                TitleLabel.TextColor3 = Library.Theme and Library.Theme.Text or Color3.fromRGB(230, 230, 235)
+                TitleLabel.TextSize = 14
+                TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+                TitleLabel.Parent = NotifFrame
+
+                -- Description label
+                local DescLabel = Instance.new("TextLabel")
+                DescLabel.Name = "Description"
+                DescLabel.BackgroundTransparency = 1
+                DescLabel.Position = UDim2.new(0, 0, 0, 24)
+                DescLabel.Size = UDim2.new(1, 0, 0, 0)
+                DescLabel.AutomaticSize = Enum.AutomaticSize.Y
+                DescLabel.Font = Enum.Font.Gotham
+                DescLabel.Text = Description
+                DescLabel.TextColor3 = Library.Theme and Library.Theme["Text Dark"] or Color3.fromRGB(150, 150, 155)
+                DescLabel.TextSize = 12
+                DescLabel.TextXAlignment = Enum.TextXAlignment.Left
+                DescLabel.TextWrapped = true
+                DescLabel.Parent = NotifFrame
+
+                -- Progress bar at bottom
+                local ProgressBg = Instance.new("Frame")
+                ProgressBg.Name = "ProgressBg"
+                ProgressBg.BackgroundColor3 = Library.Theme and Library.Theme.Inline or Color3.fromRGB(30, 30, 32)
+                ProgressBg.Size = UDim2.new(1, 24, 0, 3)
+                ProgressBg.Position = UDim2.new(0, -12, 1, 7)
+                ProgressBg.BorderSizePixel = 0
+                ProgressBg.Parent = NotifFrame
+
+                local ProgressBar = Instance.new("Frame")
+                ProgressBar.Name = "ProgressBar"
+                ProgressBar.BackgroundColor3 = Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)
+                ProgressBar.Size = UDim2.new(1, 0, 1, 0)
+                ProgressBar.BorderSizePixel = 0
+                ProgressBar.Parent = ProgressBg
+
+                local ProgressGradient = Instance.new("UIGradient")
+                ProgressGradient.Color = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0, Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)),
+                    ColorSequenceKeypoint.new(1, Library.Theme and Library.Theme["Accent End"] or Color3.fromRGB(114, 75, 130))
+                }
+                ProgressGradient.Parent = ProgressBar
+
+                -- Animate in
+                NotifFrame.BackgroundTransparency = 1
+                NotifStroke.Transparency = 1
+                TitleLabel.TextTransparency = 1
+                DescLabel.TextTransparency = 1
+                AccentBar.BackgroundTransparency = 1
+                ProgressBg.BackgroundTransparency = 1
+                ProgressBar.BackgroundTransparency = 1
+
+                local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+                TweenService:Create(NotifFrame, tweenInfo, {BackgroundTransparency = 0}):Play()
+                TweenService:Create(NotifStroke, tweenInfo, {Transparency = 0}):Play()
+                TweenService:Create(TitleLabel, tweenInfo, {TextTransparency = 0}):Play()
+                TweenService:Create(DescLabel, tweenInfo, {TextTransparency = 0}):Play()
+                TweenService:Create(AccentBar, tweenInfo, {BackgroundTransparency = 0}):Play()
+                TweenService:Create(ProgressBg, tweenInfo, {BackgroundTransparency = 0}):Play()
+                TweenService:Create(ProgressBar, tweenInfo, {BackgroundTransparency = 0}):Play()
+
+                -- Animate progress bar
+                local progressTween = TweenService:Create(ProgressBar, TweenInfo.new(Duration, Enum.EasingStyle.Linear), {Size = UDim2.new(0, 0, 1, 0)})
+                progressTween:Play()
+
+                -- Remove after duration
+                task.delay(Duration, function()
+                    local fadeInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+                    TweenService:Create(NotifFrame, fadeInfo, {BackgroundTransparency = 1}):Play()
+                    TweenService:Create(NotifStroke, fadeInfo, {Transparency = 1}):Play()
+                    TweenService:Create(TitleLabel, fadeInfo, {TextTransparency = 1}):Play()
+                    TweenService:Create(DescLabel, fadeInfo, {TextTransparency = 1}):Play()
+                    TweenService:Create(AccentBar, fadeInfo, {BackgroundTransparency = 1}):Play()
+                    TweenService:Create(ProgressBg, fadeInfo, {BackgroundTransparency = 1}):Play()
+                    TweenService:Create(ProgressBar, fadeInfo, {BackgroundTransparency = 1}):Play()
+                    task.wait(0.35)
+                    NotifFrame:Destroy()
+                end)
+
+                return NotifFrame
             end
 
             Library:Connect(UserInputService.InputBegan, function(Input)
