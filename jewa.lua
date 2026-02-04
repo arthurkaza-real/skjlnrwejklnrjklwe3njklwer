@@ -2536,40 +2536,12 @@ local Library = {
                 NotifPadding.PaddingRight = UDim.new(0, 12)
                 NotifPadding.Parent = NotifFrame
 
-                -- Accent bar on left
-                local AccentBar = Instance.new("Frame")
-                AccentBar.Name = "AccentBar"
-                AccentBar.Size = UDim2.new(0, 3, 1, 0)
-                AccentBar.Position = UDim2.new(0, -12, 0, -10)
-                AccentBar.BackgroundColor3 = Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)
-                AccentBar.BorderSizePixel = 0
-                AccentBar.Parent = NotifFrame
-
-                local AccentGradient = Instance.new("UIGradient")
-                AccentGradient.Color = ColorSequence.new{
-                    ColorSequenceKeypoint.new(0, Library.Theme and Library.Theme["Accent Start"] or Color3.fromRGB(175, 102, 126)),
-                    ColorSequenceKeypoint.new(1, Library.Theme and Library.Theme["Accent End"] or Color3.fromRGB(114, 75, 130))
-                }
-                AccentGradient.Rotation = 90
-                AccentGradient.Parent = AccentBar
-
-                -- Icon container
-                local IconContainer = Instance.new("Frame")
-                IconContainer.Name = "IconContainer"
-                IconContainer.BackgroundTransparency = 1
-                IconContainer.Size = UDim2.new(0, 18, 0, 18)
-                IconContainer.Position = UDim2.new(0, 0, 0, 0)
-                IconContainer.Parent = NotifFrame
-
-                -- Apply icon
-                ApplyIconToContainer(IconContainer, Icon, UDim2.new(1, 0, 1, 0), Library.Theme and Library.Theme.Text or Color3.fromRGB(230, 230, 235))
-
                 -- Title label
                 local TitleLabel = Instance.new("TextLabel")
                 TitleLabel.Name = "Title"
                 TitleLabel.BackgroundTransparency = 1
-                TitleLabel.Position = UDim2.new(0, 26, 0, 0)
-                TitleLabel.Size = UDim2.new(1, -26, 0, 18)
+                TitleLabel.Position = UDim2.new(0, 0, 0, 0)
+                TitleLabel.Size = UDim2.new(1, 0, 0, 18)
                 TitleLabel.Font = Enum.Font.GothamBold
                 TitleLabel.Text = Title
                 TitleLabel.TextColor3 = Library.Theme and Library.Theme.Text or Color3.fromRGB(230, 230, 235)
@@ -2620,7 +2592,6 @@ local Library = {
                 NotifStroke.Transparency = 1
                 TitleLabel.TextTransparency = 1
                 DescLabel.TextTransparency = 1
-                AccentBar.BackgroundTransparency = 1
                 ProgressBg.BackgroundTransparency = 1
                 ProgressBar.BackgroundTransparency = 1
 
@@ -2629,7 +2600,6 @@ local Library = {
                 TweenService:Create(NotifStroke, tweenInfo, {Transparency = 0}):Play()
                 TweenService:Create(TitleLabel, tweenInfo, {TextTransparency = 0}):Play()
                 TweenService:Create(DescLabel, tweenInfo, {TextTransparency = 0}):Play()
-                TweenService:Create(AccentBar, tweenInfo, {BackgroundTransparency = 0}):Play()
                 TweenService:Create(ProgressBg, tweenInfo, {BackgroundTransparency = 0}):Play()
                 TweenService:Create(ProgressBar, tweenInfo, {BackgroundTransparency = 0}):Play()
 
@@ -2644,7 +2614,6 @@ local Library = {
                     TweenService:Create(NotifStroke, fadeInfo, {Transparency = 1}):Play()
                     TweenService:Create(TitleLabel, fadeInfo, {TextTransparency = 1}):Play()
                     TweenService:Create(DescLabel, fadeInfo, {TextTransparency = 1}):Play()
-                    TweenService:Create(AccentBar, fadeInfo, {BackgroundTransparency = 1}):Play()
                     TweenService:Create(ProgressBg, fadeInfo, {BackgroundTransparency = 1}):Play()
                     TweenService:Create(ProgressBar, fadeInfo, {BackgroundTransparency = 1}):Play()
                     task.wait(0.35)
