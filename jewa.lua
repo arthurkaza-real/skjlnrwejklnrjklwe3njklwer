@@ -3029,6 +3029,8 @@ local Library = {
 
             local Page = {
                 Icon = Params.Icon or Params.icon or "rbxassetid://134546249616852",
+                Name = Params.Name or Params.name or "",
+                DisplayName = Params.DisplayName or Params.displayName or false,
 
                 Window = Self.Window,
                 Page = Self,
@@ -3173,6 +3175,41 @@ local Library = {
                 }):AddToTheme({Color = function()
                     return ColorSequence.new{ColorSequenceKeypoint.new(0, Library.Theme["Accent Start"]),ColorSequenceKeypoint.new(1, Library.Theme["Accent End"])}
                 end})
+
+                -- Optional name label below icon (when DisplayName = true)
+                if Page.DisplayName and Page.Name and #Page.Name > 0 then
+                    Items["NameLabel"] = Library:Create("TextLabel", {
+                        Parent = Items["Inactive"].Instance,
+                        Name = "\0",
+                        BorderColor3 = Color3.fromRGB(0, 0, 0),
+                        TextSize = 10,
+                        TextXAlignment = Enum.TextXAlignment.Center,
+                        TextYAlignment = Enum.TextYAlignment.Top,
+                        Size = UDim2.new(1, -4, 0, 14),
+                        Position = UDim2.new(0.5, 0, 0, 38),
+                        AnchorPoint = Vector2.new(0.5, 0),
+                        BackgroundTransparency = 1,
+                        Text = Page.Name,
+                        Font = Enum.Font.GothamMedium,
+                        TextColor3 = Color3.fromRGB(220, 229, 247),
+                        TextTransparency = 0.8,
+                        TextTruncate = Enum.TextTruncate.AtEnd,
+                        ZIndex = 2,
+                        BorderSizePixel = 0,
+                        BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    }):AddToTheme({TextColor3 = "Text"})
+                    Items["NameLabelGradient"] = Library:Create("UIGradient", {
+                        Parent = Items["NameLabel"].Instance,
+                        Name = "\0",
+                        Enabled = false,
+                        Color = ColorSequence.new{
+                            ColorSequenceKeypoint.new(0, Color3.fromRGB(175, 102, 126)),
+                            ColorSequenceKeypoint.new(1, Color3.fromRGB(114, 75, 130))
+                        }
+                    }):AddToTheme({Color = function()
+                        return ColorSequence.new{ColorSequenceKeypoint.new(0, Library.Theme["Accent Start"]),ColorSequenceKeypoint.new(1, Library.Theme["Accent End"])}
+                    end})
+                end
                 
                 Items["Page"] = Library:Create("Frame", {
                     Parent = Library.UnusedHolder.Instance,
@@ -3276,7 +3313,10 @@ local Library = {
                     Items["IconGradient"].Instance.Enabled = true 
                     Items["Icon"]:ChangeItemTheme({ImageColor3 = "Accent End"})
                     Items["Icon"]:Tween({ImageColor3 = Color3.fromRGB(255, 255, 255), ImageTransparency = 0})
-
+                    if Items["NameLabel"] then
+                        Items["NameLabelGradient"].Instance.Enabled = true
+                        Items["NameLabel"]:Tween({TextColor3 = Color3.fromRGB(255, 255, 255), TextTransparency = 0})
+                    end
                     if Page.Page.Search then 
                         Page.Page.CurrentPage = Page
                     end
@@ -3285,6 +3325,10 @@ local Library = {
                     Items["IconGradient"].Instance.Enabled = false 
                     Items["Icon"]:ChangeItemTheme({ImageColor3 = "Text"})
                     Items["Icon"]:Tween({ImageColor3 = Library.Theme.Text, ImageTransparency = 0.8})
+                    if Items["NameLabel"] then
+                        Items["NameLabelGradient"].Instance.Enabled = false
+                        Items["NameLabel"]:Tween({TextColor3 = Library.Theme.Text, TextTransparency = 0.8})
+                    end
                 end
 
                 Items["Page"]:FadeDescendants(Bool, function()
