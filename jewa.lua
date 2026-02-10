@@ -3786,6 +3786,10 @@ local Library = {
                 Toggle:Set(not Toggle.Value)
             end)
 
+            Items["Indicator"]:Connect("MouseButton1Down", function()
+                Toggle:Set(not Toggle.Value)
+            end)
+
             Items["Toggle"]:Connect("MouseButton2Down", function()
                 Toggle:SetOpen(not IsKeybindThingOpen)
             end)
@@ -5749,8 +5753,10 @@ local Library = {
                             if ConfigName == "" then 
                                 return
                             end
-    
-                            writefile(ConfigsFolder .. ConfigName .. ".json", Library:GetConfig())
+
+                            local configData = Library:GetConfig()
+                            writefile(ConfigsFolder .. ConfigName .. ".json", configData)
+                            writefile(Library.Directory .. "/autoload.json", configData)
                             Library:GetConfigsList(ConfigsDropdown)
                         end
                     end
