@@ -1889,9 +1889,13 @@ local Library = {
         end
 
         Library.CheckForAutoLoad = function()
+            if not isfile(Library.Directory .. "/autoload.json") then
+                return
+            end
+
             local ConfigContent = readfile(Library.Directory .. "/autoload.json")
 
-            if ConfigContent == "" then 
+            if not ConfigContent or ConfigContent == "" then 
                 return 
             end
     
@@ -1904,27 +1908,32 @@ local Library = {
             if Params.Folder or Params.folder then
                 local OldDirectory = Library.Directory
                 Library.Directory ..= Params.Folder or Params.folder .. "/"
-                
-                for Index, Value in Library.Folders do 
-                    if isfolder(OldDirectory .. Value) then
-                        delfolder(OldDirectory .. Value)
-                    end
+
+                -- Ensure parent directory exists
+                if not isfolder(OldDirectory) then
+                    makefolder(OldDirectory)
                 end
 
-                if isfolder(OldDirectory) then 
-                    delfolder(OldDirectory)
-                end
-                
-                task.wait()
-
+                -- Create new subdirectory if it doesn't exist
                 if not isfolder(Library.Directory) then 
                     makefolder(Library.Directory)
                 end
     
+                -- Create required subfolders
                 for _, Folder in Library.Folders do 
                     if not isfolder(Library.Directory .. Folder) then 
                         makefolder(Library.Directory .. Folder)
                     end
+                end
+
+                -- Migrate autoload.json from old directory if it exists and new one doesn't
+                if isfile(OldDirectory .. "/autoload.json") and not isfile(Library.Directory .. "/autoload.json") then
+                    pcall(function()
+                        local oldContent = readfile(OldDirectory .. "/autoload.json")
+                        if oldContent and oldContent ~= "" then
+                            writefile(Library.Directory .. "/autoload.json", oldContent)
+                        end
+                    end)
                 end
             end
 
@@ -5823,7 +5832,7 @@ local Library = {
                 ConfigsSection:Toggle({
                     Name = "Auto Save",
                     Flag = "Auto Save",
-                    Default = false,
+                    Default = true,
                     Callback = function(Value)
                         Library.AutoSave = Value
                     end
