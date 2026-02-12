@@ -459,17 +459,38 @@ local Library = {
         Library:Thread(function()
             if Self.Instance then
                 if Self.Instance[Signal] then
-                    if IsMobile then 
-                        if Signal == "MouseButton1Down" then
-                            Connection.Connection = Self.Instance.InputBegan:Connect(function(Input)
-                                if Input.UserInputType == Enum.UserInputType.Touch then
-                                    Callback()
-                                end
-                            end)
+                if IsMobile then 
+                    if Signal == "MouseButton1Down" or Signal == "MouseButton1Click" then
+                        local lastFire = 0
+                        local function safeCallback(...)
+                            local now = tick()
+                            if now - lastFire < 0.15 then return end
+                            lastFire = now
+                            Callback(...)
+                        end
 
-                            return -- return so it doesnt proceed further
-                        end 
-                    end
+                        -- Connect native mouse event (works on Delta Mobile and most executors)
+                        local nativeConn = Self.Instance[Signal]:Connect(safeCallback)
+
+                        -- Also connect InputBegan as fallback (for standard Roblox mobile)
+                        -- Check both Touch AND MouseButton1 since executors vary
+                        local touchConn = Self.Instance.InputBegan:Connect(function(Input)
+                            if Input.UserInputType == Enum.UserInputType.Touch or Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                                safeCallback()
+                            end
+                        end)
+
+                        -- Wrap both connections for proper cleanup
+                        Connection.Connection = {
+                            Disconnect = function(self)
+                                pcall(function() nativeConn:Disconnect() end)
+                                pcall(function() touchConn:Disconnect() end)
+                            end
+                        }
+
+                        return -- return so it doesnt proceed further
+                    end 
+                end
 
                     Connection.Connection = Self.Instance[Signal]:Connect(Callback)
                 else
@@ -619,6 +640,31 @@ local Library = {
                 end)
             end
         end)
+
+        -- Mobile fallback: for executors where GuiObject.InputBegan doesn't fire for touch
+        -- Use MouseButton1Down on GuiButton instances + global InputEnded to manage drag state
+        if IsMobile then
+            if Gui:IsA("GuiButton") then
+                Gui.MouseButton1Down:Connect(function(x, y)
+                    if Dragging then return end
+                    Dragging = true
+                    DragStart = Vector3.new(x, y, 0)
+                    StartPosition = Gui.Position
+                end)
+            end
+
+            Library:Connect(UserInputService.InputEnded, function(Input)
+                if (Input.UserInputType == Enum.UserInputType.Touch or Input.UserInputType == Enum.UserInputType.MouseButton1) then
+                    if Dragging then
+                        Dragging = false
+                        if InputChanged then
+                            InputChanged:Disconnect()
+                            InputChanged = nil
+                        end
+                    end
+                end
+            end)
+        end
     
         Library:Connect(UserInputService.InputChanged, function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
@@ -731,6 +777,13 @@ local Library = {
                     BeginResizing(Value.Side)
                 end
             end)
+
+            -- Mobile fallback: for executors where GuiObject.InputBegan doesn't fire for touch
+            if IsMobile then
+                Value.Button.Instance.MouseButton1Down:Connect(function()
+                    BeginResizing(Value.Side)
+                end)
+            end
         end
 
         Library:Connect(UserInputService.InputEnded, function(Input)
@@ -976,7 +1029,8 @@ local Library = {
         Parent = gethui(),
         Name = "\0",
         ZIndexBehavior = Enum.ZIndexBehavior.Global,
-        ResetOnSpawn = false
+        ResetOnSpawn = false,
+        DisplayOrder = 999999
     })
 
     Library.UnusedHolder = Library:Create("ScreenGui", {
@@ -984,7 +1038,8 @@ local Library = {
         Name = "\0",
         Enabled = false,
         ZIndexBehavior = Enum.ZIndexBehavior.Global,
-        ResetOnSpawn = false
+        ResetOnSpawn = false,
+        DisplayOrder = 999999
     })
 
     do
@@ -1507,6 +1562,44 @@ local Library = {
                     end)
                 end
             end)
+
+            -- Mobile fallback: for executors where GuiObject.InputBegan doesn't fire for touch
+            if IsMobile then
+                Items["Palette"].Instance.MouseButton1Down:Connect(function(x, y)
+                    if SlidingPalette then return end
+                    SlidingPalette = true
+                    Colorpicker:SlidePalette({Position = Vector3.new(x, y, 0)})
+                end)
+
+                Items["HueInline"].Instance.MouseButton1Down:Connect(function(x, y)
+                    if SlidingHue then return end
+                    SlidingHue = true
+                    Colorpicker:SlideHue({Position = Vector3.new(x, y, 0)})
+                end)
+
+                Items["Alpha"].Instance.MouseButton1Down:Connect(function(x, y)
+                    if SlidingAlpha then return end
+                    SlidingAlpha = true
+                    Colorpicker:SlideAlpha({Position = Vector3.new(x, y, 0)})
+                end)
+
+                Library:Connect(UserInputService.InputEnded, function(Input)
+                    if Input.UserInputType == Enum.UserInputType.Touch or Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        if SlidingPalette then
+                            SlidingPalette = false
+                            if PaletteChanged then PaletteChanged:Disconnect() PaletteChanged = nil end
+                        end
+                        if SlidingHue then
+                            SlidingHue = false
+                            if HueChanged then HueChanged:Disconnect() HueChanged = nil end
+                        end
+                        if SlidingAlpha then
+                            SlidingAlpha = false
+                            if AlphaChanged then AlphaChanged:Disconnect() AlphaChanged = nil end
+                        end
+                    end
+                end)
+            end
     
             Library:Connect(UserInputService.InputChanged, function(Input)
                 if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
@@ -4231,6 +4324,29 @@ local Library = {
                     end)
                 end
             end)
+
+            -- Mobile fallback: for executors where GuiObject.InputBegan doesn't fire for touch
+            if IsMobile then
+                Items["RealSlider"].Instance.MouseButton1Down:Connect(function(x, y)
+                    if Slider.Sliding then return end
+                    Slider.Sliding = true
+                    local fakeInput = {Position = Vector3.new(x, y, 0)}
+                    local Value = Slider:GetSize(fakeInput)
+                    Slider:Set(Value)
+                end)
+
+                Library:Connect(UserInputService.InputEnded, function(Input)
+                    if (Input.UserInputType == Enum.UserInputType.Touch or Input.UserInputType == Enum.UserInputType.MouseButton1) then
+                        if Slider.Sliding then
+                            Slider.Sliding = false
+                            if InputChanged then
+                                InputChanged:Disconnect()
+                                InputChanged = nil
+                            end
+                        end
+                    end
+                end)
+            end
 
             Items["Plus"]:Connect("MouseButton1Down", function()
                 Slider:Set(Slider.Value + Slider.Decimals)
