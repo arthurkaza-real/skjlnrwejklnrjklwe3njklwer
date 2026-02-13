@@ -2213,7 +2213,7 @@ local Library = {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 }):AddToTheme({ImageColor3 = "Text"})
                 
-                Items["Pages"] = Library:Create("Frame", {
+                Items["Pages"] = Library:Create("ScrollingFrame", {
                     Parent = Items["MainFrame"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
@@ -2221,7 +2221,13 @@ local Library = {
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
                     Size = UDim2.new(0, 225, 1, -61),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    ScrollingDirection = Enum.ScrollingDirection.Y,
+                    AutomaticCanvasSize = Enum.AutomaticSize.Y,
+                    CanvasSize = UDim2.new(0, 0, 0, 0),
+                    ScrollBarThickness = 2,
+                    ScrollBarImageColor3 = Color3.fromRGB(60, 60, 65),
+                    ScrollBarImageTransparency = 0.5
                 })
                 
                 Library:Create("UIPadding", {
@@ -2942,14 +2948,20 @@ local Library = {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 })
                 
-                Items["SubPages"] = Library:Create("Frame", {
+                Items["SubPages"] = Library:Create("ScrollingFrame", {
                     Parent = Items["Page"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
                     Size = UDim2.new(1, 0, 0, 50),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    ScrollingDirection = Enum.ScrollingDirection.X,
+                    AutomaticCanvasSize = Enum.AutomaticSize.X,
+                    CanvasSize = UDim2.new(0, 0, 0, 0),
+                    ScrollBarThickness = 2,
+                    ScrollBarImageColor3 = Color3.fromRGB(60, 60, 65),
+                    ScrollBarImageTransparency = 0.5
                 })                
 
                 Library:Create("UIListLayout", {
