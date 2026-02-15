@@ -2953,7 +2953,7 @@ local Library = {
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
-                    Size = UDim2.new(1, 0, 0, 50),
+                    Size = UDim2.new(1, 0, 0, 65),
                     BorderSizePixel = 0,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                     ScrollingDirection = Enum.ScrollingDirection.X,
@@ -2982,21 +2982,21 @@ local Library = {
                     Parent = Items["Page"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
-                    Position = UDim2.new(0, 0, 0, 60),
+                    Position = UDim2.new(0, 0, 0, 75),
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
-                    Size = UDim2.new(1, 0, 1, -60),
+                    Size = UDim2.new(1, 0, 1, -75),
                     BorderSizePixel = 0,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 })
 
                 if Page.Search then 
-                    Items["Columns"].Instance.Position = UDim2.new(0, 0, 0, 100)
-                    Items["Columns"].Instance.Size = UDim2.new(1, 0, 1, -100)
+                    Items["Columns"].Instance.Position = UDim2.new(0, 0, 0, 115)
+                    Items["Columns"].Instance.Size = UDim2.new(1, 0, 1, -115)
 
                     Items["Search"] = Library:Create("Frame", {
                         Parent = Items["Page"].Instance,
                         Name = "\0",
-                        Position = UDim2.new(0, 10, 0, 65),
+                        Position = UDim2.new(0, 10, 0, 80),
                         BorderColor3 = Color3.fromRGB(0, 0, 0),
                         Size = UDim2.new(1, -20, 0, 35),
                         BorderSizePixel = 0,
@@ -3144,7 +3144,7 @@ local Library = {
             local Page = {
                 Icon = Params.Icon or Params.icon or "rbxassetid://134546249616852",
                 Name = Params.Name or Params.name or "",
-                DisplayName = Params.DisplayName or Params.displayName or false,
+                DisplayName = (Params.DisplayName ~= nil and Params.DisplayName) or (Params.displayName ~= nil and Params.displayName) or true,
 
                 Window = Self.Window,
                 Page = Self,
