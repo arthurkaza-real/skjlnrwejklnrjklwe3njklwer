@@ -5327,8 +5327,6 @@ local Library = {
                     Parent = Items["Inline"].Instance,
                     Name = "\0",
                     FontFace = Library.Font,
-                    Active = false,
-                    Selectable = false,
                     AnchorPoint = Vector2.new(0, 0.5),
                     PlaceholderColor3 = Color3.fromRGB(145, 151, 163),
                     PlaceholderText = Textbox.Placeholder,
@@ -5359,6 +5357,12 @@ local Library = {
                 end, function()
                     Items["Inline"]:Tween({BackgroundColor3 = Library.Theme["Element"]})
                 end)
+
+                if IsMobile then
+                    Items["Inline"]:Connect("MouseButton1Click", function()
+                        Items["Input"].Instance:CaptureFocus()
+                    end)
+                end
 
                 Textbox.Items = Items
             end
