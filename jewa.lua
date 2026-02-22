@@ -4433,7 +4433,7 @@ local Library = {
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
-                    Size = UDim2.new(1, 0, 0, 90),
+                    Size = UDim2.new(1, 0, 0, 77),
                     BorderSizePixel = 0,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 })
@@ -4488,7 +4488,7 @@ local Library = {
                     AutoButtonColor = false,
                     AnchorPoint = Vector2.new(0, 1),
                     Position = UDim2.new(0, 0, 1, 0),
-                    Size = UDim2.new(1, 0, 0, 65),
+                    Size = UDim2.new(1, 0, 0, 25),
                     BorderSizePixel = 0,
                     TextSize = 14,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
