@@ -4403,7 +4403,7 @@ local Library = {
                 Name = Params.Name or Params.name or "Dropdown",
                 OptionItems = Params.Items or Params.items or { },
                 Flag = Params.Flag or Params.flag or (Params.Name or Params.name),
-                MaxSize = Params.MaxSize or Params.maxsize or 125,
+                MaxSize = Params.MaxSize or Params.maxsize or 250,
                 Default = Params.Default or Params.default or "",
                 Premium = Params.Premium or Params.premium or false,
                 Callback = Params.Callback or Params.callback or function() end,
@@ -4433,7 +4433,7 @@ local Library = {
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
-                    Size = UDim2.new(1, 0, 0, 77),
+                    Size = UDim2.new(1, 0, 0, 52),
                     BorderSizePixel = 0,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 })
@@ -4921,7 +4921,7 @@ local Library = {
                     Items["Arrow"]:Tween({Rotation = -90})
 
                     Items["OptionHolder"].Instance.Position = UDim2.new(0, Items["RealDropdown"].Instance.AbsolutePosition.X, 0, Items["RealDropdown"].Instance.AbsolutePosition.Y + Items["RealDropdown"].Instance.AbsoluteSize.Y)
-                    Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X, 0, Dropdown.MaxSize)
+                    Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X * 2, 0, Dropdown.MaxSize)
                     
                     Items["OptionHolder"].Instance.Parent = Library.Holder.Instance
                     Items["OptionHolder"].Instance.Visible = true
@@ -4932,7 +4932,7 @@ local Library = {
 
                         RenderStepped = RunService.RenderStepped:Connect(function()
                             Items["OptionHolder"].Instance.Position = UDim2.new(0, Items["RealDropdown"].Instance.AbsolutePosition.X, 0, Items["RealDropdown"].Instance.AbsolutePosition.Y + Items["RealDropdown"].Instance.AbsoluteSize.Y + 10)
-                            Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X, 0, Dropdown.MaxSize)
+                            Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X * 2, 0, Dropdown.MaxSize)
                         end)
                     end)
 
