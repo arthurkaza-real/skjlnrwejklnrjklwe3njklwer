@@ -4921,7 +4921,7 @@ local Library = {
                     Items["Arrow"]:Tween({Rotation = -90})
 
                     Items["OptionHolder"].Instance.Position = UDim2.new(0, Items["RealDropdown"].Instance.AbsolutePosition.X, 0, Items["RealDropdown"].Instance.AbsolutePosition.Y + Items["RealDropdown"].Instance.AbsoluteSize.Y)
-                    Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X * 2, 0, Dropdown.MaxSize)
+                    Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X, 0, Dropdown.MaxSize)
                     
                     Items["OptionHolder"].Instance.Parent = Library.Holder.Instance
                     Items["OptionHolder"].Instance.Visible = true
@@ -4932,7 +4932,7 @@ local Library = {
 
                         RenderStepped = RunService.RenderStepped:Connect(function()
                             Items["OptionHolder"].Instance.Position = UDim2.new(0, Items["RealDropdown"].Instance.AbsolutePosition.X, 0, Items["RealDropdown"].Instance.AbsolutePosition.Y + Items["RealDropdown"].Instance.AbsoluteSize.Y + 10)
-                            Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X * 2, 0, Dropdown.MaxSize)
+                            Items["OptionHolder"].Instance.Size = UDim2.new(0, Items["RealDropdown"].Instance.AbsoluteSize.X, 0, Dropdown.MaxSize)
                         end)
                     end)
 
