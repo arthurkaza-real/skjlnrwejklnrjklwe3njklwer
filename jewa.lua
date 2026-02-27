@@ -2742,8 +2742,13 @@ local Library = {
                 Items["Pages"]:FadeDescendants(false, Debounce)
                 Items["Content"]:FadeDescendants(false, Debounce)
                 task.wait(Library.Animation.Time - 0.05)
-                Items["MainFrame"].Instance.Position = UDim2.new(0.5, 0, 0.5, 0)
-                Items["MainFrame"].Instance.AnchorPoint = Vector2.new(0.5, 0.5)
+                local frame = Items["MainFrame"].Instance
+                local absPos = frame.AbsolutePosition
+                local absSize = frame.AbsoluteSize
+                local centerX = absPos.X + absSize.X / 2
+                local centerY = absPos.Y + absSize.Y / 2
+                frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                frame.Position = UDim2.new(0, centerX, 0, centerY)
                 Items["MainFrame"]:Tween({Size = UDim2.new(0, 50, 0, 50)}, TweenInfo.new(1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out))
                 task.wait(0.95)
                 Items["MainFrame"]:Tween({BackgroundTransparency = 1})
