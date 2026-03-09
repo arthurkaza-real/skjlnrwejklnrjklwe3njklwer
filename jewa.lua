@@ -3642,6 +3642,10 @@ local Library = {
             end
         end
 
+        local function IsPremiumLocked(Control)
+            return Control and Control.Premium == true
+        end
+
         Library.Toggle = function(Self, Params)
             Params = Params or { }
 
@@ -3853,6 +3857,10 @@ local Library = {
             local CanTheyAddAKeybind = true
 
             function Toggle:SetOpen(Bool)
+                if IsPremiumLocked(Toggle) then
+                    return
+                end
+
                 if not CanTheyAddAKeybind then 
                     return 
                 end
@@ -3878,6 +3886,10 @@ local Library = {
             end
 
             function Toggle:Set(Bool)
+                if IsPremiumLocked(Toggle) then
+                    return
+                end
+
                 Toggle.Value = Bool 
 
                 if Bool then 
@@ -4146,6 +4158,10 @@ local Library = {
             end
 
             function Button:Press()
+                if IsPremiumLocked(Button) then
+                    return
+                end
+
                 Items["Button"]:Tween({Size = UDim2.new(0, 0, 1, 0)})
                 task.wait(0.2)
                 Items["Button"]:Tween({Size = UDim2.new(1, -2, 1, 0)})
@@ -4374,6 +4390,10 @@ local Library = {
             end
 
             function Slider:Set(Value)
+                if IsPremiumLocked(Slider) then
+                    return
+                end
+
                 Slider.Value = Library:Round(math.clamp(Value, Slider.Min, Slider.Max), Slider.Decimals)
 
                 Items["Accent"]:Tween({Size = UDim2.new((Slider.Value - Slider.Min) / (Slider.Max - Slider.Min), 0, 1, 0)}, TweenInfo.new(Library.Animation.Time, Enum.EasingStyle.Quart, Enum.EasingDirection.Out))
@@ -4777,6 +4797,10 @@ local Library = {
             end
 
             function Dropdown:Set(Value)
+                if IsPremiumLocked(Dropdown) then
+                    return
+                end
+
                 if Dropdown.Multi then 
                     if type(Value) ~= "table" then 
                         return
@@ -4918,6 +4942,10 @@ local Library = {
                 end
 
                 function OptionData:Set()
+                    if IsPremiumLocked(Dropdown) then
+                        return
+                    end
+
                     OptionData.IsSelected = not OptionData.IsSelected
 
                     if Dropdown.Multi then 
@@ -5009,6 +5037,10 @@ local Library = {
             local RenderStepped 
 
             function Dropdown:SetOpen(Bool)
+                if IsPremiumLocked(Dropdown) then
+                    return
+                end
+
                 if Debounce then 
                     return 
                 end
@@ -5492,6 +5524,10 @@ local Library = {
             end
 
             function Textbox:Set(Value)
+                if IsPremiumLocked(Textbox) then
+                    return
+                end
+
                 if Textbox.Numeric then
                     if (not tonumber(Value)) and string.len(tostring(Value)) > 0 then
                         Value = Textbox.Value
