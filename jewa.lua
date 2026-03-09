@@ -3500,11 +3500,16 @@ local Library = {
         Library.Section = function(Self, Params)
             Params = Params or { } 
 
+            local ParentWindow = rawget(Self, "Window")
+            if type(ParentWindow) ~= "table" then
+                ParentWindow = Self
+            end
+
             local Section = {
                 Name = Params.Name or Params.name or "Section",
                 Side = Params.Side or Params.side or 1,
 
-                Window = Self.Window,
+                Window = ParentWindow,
                 Page = Self,
                 Items = { },
             }
@@ -3627,7 +3632,7 @@ local Library = {
         local function TrackWindowPremiumControl(Control)
             local Window = Control and Control.Window
 
-            if not Window then
+            if type(Window) ~= "table" then
                 return
             end
 
