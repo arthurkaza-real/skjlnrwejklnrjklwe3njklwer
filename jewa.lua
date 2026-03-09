@@ -2042,6 +2042,8 @@ local Library = {
                 IsMinimized = false,
                 IsFullScreen = false,
                 ResizeHandler = nil,
+                PremiumState = nil,
+                PremiumControls = { },
                 Pages = { },
                 Items = { }
             }
@@ -2729,6 +2731,18 @@ local Library = {
                 end)
 
                 return NotifFrame
+            end
+
+            function Window:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Window.PremiumState = IsEnabled
+
+                for _, Control in Window.PremiumControls do
+                    if Control and Control.UpdatePrem then
+                        Control:UpdatePrem(IsEnabled)
+                    end
+                end
             end
 
             Library:Connect(UserInputService.InputBegan, function(Input)
@@ -3578,6 +3592,56 @@ local Library = {
             return setmetatable(Section, Library)
         end
 
+        local function UpdatePremiumOverlay(Items, ParentKey, State)
+            local IsEnabled = State and true or false
+
+            if IsEnabled and not Items["Background"] then
+                Items["Background"] = Library:Create("TextButton", {
+                    Parent = Items[ParentKey].Instance,
+                    Name = "\0",
+                    Active = false,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    Text = "",
+                    AutoButtonColor = false,
+                    ZIndex = 99999,
+                    BackgroundTransparency = 0.20000000298023224,
+                    Position = UDim2.new(0, -20, 0, 0),
+                    Size = UDim2.new(1, 40, 1, 0),
+                    Selectable = false,
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = Color3.fromRGB(18, 18, 20)
+                }):AddToTheme({BackgroundColor3 = "Background"})
+
+                Library:Create("UICorner", {
+                    Parent = Items["Background"].Instance,
+                    Name = "\0",
+                    CornerRadius = UDim.new(0, 5)
+                })
+            end
+
+            if Items["Background"] then
+                Items["Background"].Instance.Visible = IsEnabled
+            end
+        end
+
+        local function TrackWindowPremiumControl(Control)
+            local Window = Control and Control.Window
+
+            if not Window then
+                return
+            end
+
+            Window.PremiumControls = Window.PremiumControls or { }
+
+            if not table.find(Window.PremiumControls, Control) then
+                table.insert(Window.PremiumControls, Control)
+            end
+
+            if Window.PremiumState ~= nil and Control.UpdatePrem then
+                Control:UpdatePrem(Window.PremiumState)
+            end
+        end
+
         Library.Toggle = function(Self, Params)
             Params = Params or { }
 
@@ -3832,6 +3896,13 @@ local Library = {
                 Items["Toggle"].Instance.Visible = Bool 
             end
 
+            function Toggle:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Toggle.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "Toggle", IsEnabled)
+            end
+
             function Toggle:SetText(Text)
                 Items["Text"].Instance.Text = tostring(Text)
             end
@@ -3951,6 +4022,7 @@ local Library = {
                 Toggle:Set(Value)
             end
 
+            TrackWindowPremiumControl(Toggle)
             return setmetatable(Toggle, Library)
         end
 
@@ -4085,6 +4157,13 @@ local Library = {
                 Items["Button"].Instance.Visible = Bool
             end
 
+            function Button:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Button.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "ButtonBackground", IsEnabled)
+            end
+
             function Button:SetText(Text)
                 Items["Text"].Instance.Text = tostring(Text)
             end
@@ -4102,6 +4181,7 @@ local Library = {
                 table.insert(Button.Page.Page.SearchItems, SearchData)
             end
 
+            TrackWindowPremiumControl(Button)
             return setmetatable(Button, Library)
         end
 
@@ -4306,6 +4386,13 @@ local Library = {
                 Items["Slider"].Instance.Visible = Bool
             end
 
+            function Slider:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Slider.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "Slider", IsEnabled)
+            end
+
             function Slider:GetSize(Input)
                 local SizeX = (Input.Position.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
                 local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
@@ -4398,6 +4485,7 @@ local Library = {
                 Slider:Set(Value)
             end
 
+            TrackWindowPremiumControl(Slider)
             return setmetatable(Slider, Library)
         end
 
@@ -4910,6 +4998,13 @@ local Library = {
                 Items["Dropdown"].Instance.Visible = Bool 
             end
 
+            function Dropdown:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Dropdown.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "Dropdown", IsEnabled)
+            end
+
             local Debounce = false 
             local RenderStepped 
 
@@ -5035,6 +5130,7 @@ local Library = {
                 Dropdown:Set(Value)
             end
 
+            TrackWindowPremiumControl(Dropdown)
             return setmetatable(Dropdown, Library)
         end
 
@@ -5132,6 +5228,13 @@ local Library = {
                 Items["Label"].Instance.Visible = Bool 
             end
 
+            function Label:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Label.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "Label", IsEnabled)
+            end
+
             function Label:SetText(Text)
                 Items["Text"].Instance.Text = Text
             end
@@ -5203,6 +5306,7 @@ local Library = {
 
             Label:SetText(Label.Name)
 
+            TrackWindowPremiumControl(Label)
             return setmetatable(Label, Library)
         end
 
@@ -5376,6 +5480,13 @@ local Library = {
                 Items["Textbox"].Instance.Visible = Bool
             end
 
+            function Textbox:UpdatePrem(State)
+                local IsEnabled = State and true or false
+
+                Textbox.Premium = IsEnabled
+                UpdatePremiumOverlay(Items, "Textbox", IsEnabled)
+            end
+
             function Textbox:SetText(Text)
                 Items["Text"].Instance.Text = tostring(Text)
             end
@@ -5421,6 +5532,7 @@ local Library = {
                 Textbox:Set(Value)
             end
             
+            TrackWindowPremiumControl(Textbox)
             return setmetatable(Textbox, Library)
         end
 
