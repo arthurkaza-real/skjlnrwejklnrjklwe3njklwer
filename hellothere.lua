@@ -806,68 +806,6 @@ return {
         },
       },
     },
-    QuestNPC14 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Slime Warriors terrorizing the area!",
-      title = "Slime Warrior Hunter",
-      requirements = {
-        [1] = {
-          npcType = "SlimeWarrior",
-          amount = 5,
-        },
-      },
-      id = "slime_warrior_hunt_1",
-      rewards = {
-        money = 37500,
-        gems = 38,
-        xp = 2950641852,
-      },
-      recommendedLevel = 8000,
-      itemDrops = {
-        [1] = {
-          chance = 6.5,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
-        },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 4,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.6,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
-    },
     QuestNPC19 = {
       accessoryDrops = {
       },
