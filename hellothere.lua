@@ -1,1120 +1,1428 @@
-return {
-  RepeatableQuests = {
-    QuestNPC11 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Hollows terrorizing the area!",
-      title = "Hollow Hunter",
-      requirements = {
-        [1] = {
-          npcType = "Hollow",
-          amount = 5,
+local Quests = {
+    ["QuestNPC11"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "hollow_hunt_1",
-      rewards = {
-        money = 20000,
-        gems = 22,
-        xp = 1350641852,
-      },
-      recommendedLevel = 5000,
-      itemDrops = {
-        [1] = {
-          chance = 5.2,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Hollows terrorizing the area!",
+        ["title"] = "Hollow Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Hollow",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 3.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "hollow_hunt_1",
+        ["rewards"] = {
+            ["money"] = 20000,
+            ["gems"] = 22,
+            ["xp"] = 1350641852,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 5000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 5.2,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 3.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.45,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.08,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.45,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.08,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC5 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Desert Bandits terrorizing the area!",
-      title = "Desert Bandit Hunter",
-      requirements = {
-        [1] = {
-          npcType = "DesertBandit",
-          amount = 5,
+    ["QuestNPC5"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "desert_hunt_1",
-      rewards = {
-        money = 3000,
-        gems = 5,
-        xp = 49820625,
-      },
-      recommendedLevel = 750,
-      itemDrops = {
-        [1] = {
-          chance = 2.925,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Desert Bandits terrorizing the area!",
+        ["title"] = "Desert Bandit Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "DesertBandit",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 1.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "desert_hunt_1",
+        ["rewards"] = {
+            ["money"] = 3000,
+            ["gems"] = 5,
+            ["xp"] = 49820625,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 750,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 2.925,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 1.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.35,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.16,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.04,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.35,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.16,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.04,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC4 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Monkey Boss terrorizing the area!",
-      title = "Monkey Boss",
-      requirements = {
-        [1] = {
-          npcType = "MonkeyBoss",
-          amount = 1,
+    ["QuestNPC4"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "monkey_hunt_2",
-      rewards = {
-        money = 2000,
-        gems = 0,
-        xp = 15759094,
-      },
-      recommendedLevel = 500,
-      itemDrops = {
-        [1] = {
-          chance = 2.6,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Monkey Boss terrorizing the area!",
+        ["title"] = "Monkey Boss",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "MonkeyBoss",
+                ["amount"] = 1,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 1.5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "monkey_hunt_2",
+        ["rewards"] = {
+            ["money"] = 2000,
+            ["gems"] = 0,
+            ["xp"] = 15759094,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 500,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 2.6,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 1.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.42,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.05,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.42,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.2,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.05,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC9 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Sorcerer Students terrorizing the area!",
-      title = "Sorcerer Hunter",
-      requirements = {
-        [1] = {
-          npcType = "Sorcerer",
-          amount = 5,
+    ["QuestNPC9"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "jjk_hunt_1",
-      rewards = {
-        money = 12500,
-        gems = 16,
-        xp = 475808102,
-      },
-      recommendedLevel = 3000,
-      itemDrops = {
-        [1] = {
-          chance = 3.9,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Sorcerer Students terrorizing the area!",
+        ["title"] = "Sorcerer Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Sorcerer",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 2.15,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "jjk_hunt_1",
+        ["rewards"] = {
+            ["money"] = 12500,
+            ["gems"] = 16,
+            ["xp"] = 475808102,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 3000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 3.9,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 2.15,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.55,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.3,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.065,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.55,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.3,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.065,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC1 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the thieves terrorizing the area!",
-      title = "Thief Hunter",
-      requirements = {
-        [1] = {
-          npcType = "Thief",
-          amount = 5,
+    ["QuestNPC22"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "thief_hunt_1",
-      rewards = {
-        money = 250,
-        gems = 0,
-        xp = 187869,
-      },
-      recommendedLevel = 0,
-      itemDrops = {
-        [1] = {
-          chance = 1.625,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Strong Bandits terrorizing the area!",
+        ["title"] = "Bandit Purge",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "StrongBandit",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 0.9,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "strong_bandit_hunt_1",
+        ["rewards"] = {
+            ["money"] = 110000,
+            ["gems"] = 84,
+            ["xp"] = 9200000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.4,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 13500,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 10.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 6,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 3,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.7,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.96,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.19,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.2,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.08,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.02,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC2 = {
-      accessoryDrops = {
-      },
-      description = "The Thief Boss threatens the village!",
-      title = "Thief Boss",
-      requirements = {
-        [1] = {
-          npcType = "ThiefBoss",
-          amount = 1,
+    ["QuestNPC23"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "boss_hunt_1",
-      rewards = {
-        money = 400,
-        gems = 0,
-        xp = 376313,
-      },
-      recommendedLevel = 100,
-      itemDrops = {
-        [1] = {
-          chance = 2.275,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Fast Ninjas terrorizing the area!",
+        ["title"] = "Ninja Elimination",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "FastNinja",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 1.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "fast_ninja_hunt_1",
+        ["rewards"] = {
+            ["money"] = 125000,
+            ["gems"] = 92,
+            ["xp"] = 10500000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 14500,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 11,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 6.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 3.15,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.8,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.35,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.17,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.04,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC7 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Frost Rogues terrorizing the area!",
-      title = "Frost Rogue Hunter",
-      requirements = {
-        [1] = {
-          npcType = "FrostRogue",
-          amount = 5,
+    ["QuestNPC1"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "snow_hunt_1",
-      rewards = {
-        money = 6000,
-        gems = 10,
-        xp = 164394610,
-      },
-      recommendedLevel = 1500,
-      itemDrops = {
-        [1] = {
-          chance = 3.25,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the thieves terrorizing the area!",
+        ["title"] = "Thief Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Thief",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 1.85,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "thief_hunt_1",
+        ["rewards"] = {
+            ["money"] = 250,
+            ["gems"] = 0,
+            ["xp"] = 187869,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 0,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 1.625,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 0.9,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.4,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.08,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.02,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.45,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.22,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.05,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC16 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Swordsmen terrorizing the area!",
-      title = "Blade Masters",
-      requirements = {
-        [1] = {
-          npcType = "Swordsman",
-          amount = 5,
+    ["QuestNPC2"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "swordman_hunt_1",
-      rewards = {
-        money = 52500,
-        gems = 50,
-        xp = 4600000000,
-      },
-      recommendedLevel = 10000,
-      itemDrops = {
-        [1] = {
-          chance = 7.5,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "The Thief Boss threatens the village!",
+        ["title"] = "Thief Boss",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "ThiefBoss",
+                ["amount"] = 1,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 4.5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "boss_hunt_1",
+        ["rewards"] = {
+            ["money"] = 400,
+            ["gems"] = 0,
+            ["xp"] = 376313,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 2.15,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 100,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 2.275,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 1.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.35,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.17,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.04,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1.2,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.7,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.13,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC6 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Desert Bandit Boss terrorizing the area!",
-      title = "Desert Bandit Boss",
-      requirements = {
-        [1] = {
-          npcType = "DesertBoss",
-          amount = 1,
+    ["QuestNPC15"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "desert_hunt_2",
-      rewards = {
-        money = 4250,
-        gems = 7,
-        xp = 85095625,
-      },
-      recommendedLevel = 1000,
-      itemDrops = {
-        [1] = {
-          chance = 3.25,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Academy Teachers terrorizing the area!",
+        ["title"] = "Academy Challenge",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "AcademyTeacher",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 2,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "academy_teacher_hunt_1",
+        ["rewards"] = {
+            ["money"] = 45000,
+            ["gems"] = 45,
+            ["xp"] = 3800000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.9,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 9000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 7,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 4.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.12,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.55,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.27,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.06,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC17 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Quincy terrorizing the area!",
-      title = "Quincy Purge",
-      requirements = {
-        [1] = {
-          npcType = "Quincy",
-          amount = 5,
+    ["QuestNPC7"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "quincy_hunt_1",
-      rewards = {
-        money = 61500,
-        gems = 56,
-        xp = 5350000000,
-      },
-      recommendedLevel = 10750,
-      itemDrops = {
-        [1] = {
-          chance = 8,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Frost Rogues terrorizing the area!",
+        ["title"] = "Frost Rogue Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "FrostRogue",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 4.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "snow_hunt_1",
+        ["rewards"] = {
+            ["money"] = 6000,
+            ["gems"] = 10,
+            ["xp"] = 164394610,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 2.3,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 1500,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 3.25,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 1.85,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.45,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.22,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.05,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1.3,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.14,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC18 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Ninja terrorizing the area!",
-      title = "Ninja Slayer",
-      requirements = {
-        [1] = {
-          npcType = "Ninja",
-          amount = 5,
+    ["QuestNPC16"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "ninja_hunt_1",
-      rewards = {
-        money = 72000,
-        gems = 62,
-        xp = 6200000000,
-      },
-      recommendedLevel = 11500,
-      itemDrops = {
-        [1] = {
-          chance = 8.5,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Swordsmen terrorizing the area!",
+        ["title"] = "Blade Masters",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Swordsman",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "swordman_hunt_1",
+        ["rewards"] = {
+            ["money"] = 52500,
+            ["gems"] = 50,
+            ["xp"] = 4600000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 2.45,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 10000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 7.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 4.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.15,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.7,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.13,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1.4,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.8,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.15,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC3 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the monkeys terrorizing the area!",
-      title = "Monkey Hunter",
-      requirements = {
-        [1] = {
-          npcType = "Monkey",
-          amount = 5,
+    ["QuestNPC6"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "monkey_hunt_1",
-      rewards = {
-        money = 1250,
-        gems = 0,
-        xp = 7868470,
-      },
-      recommendedLevel = 250,
-      itemDrops = {
-        [1] = {
-          chance = 2.275,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Desert Bandit Boss terrorizing the area!",
+        ["title"] = "Desert Bandit Boss",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "DesertBoss",
+                ["amount"] = 1,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "desert_hunt_2",
+        ["rewards"] = {
+            ["money"] = 4250,
+            ["gems"] = 7,
+            ["xp"] = 85095625,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 0.55,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 1000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 3.25,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 2,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.9,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.55,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.27,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.06,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.3,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.13,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.03,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC13 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Curses terrorizing the area!",
-      title = "Curse Hunter",
-      requirements = {
-        [1] = {
-          npcType = "Curse",
-          amount = 5,
+    ["QuestNPC20"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "curse_hunt_1",
-      rewards = {
-        money = 30000,
-        gems = 30,
-        xp = 2250641852,
-      },
-      recommendedLevel = 7000,
-      itemDrops = {
-        [1] = {
-          chance = 6,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Delinquents terrorizing the area!",
+        ["title"] = "Delinquent Beatdown",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Delinquent",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 3.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "delinquent_hunt_1",
+        ["rewards"] = {
+            ["money"] = 90000,
+            ["gems"] = 72,
+            ["xp"] = 7800000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 12750,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 9.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 5.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.7,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.55,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.88,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.17,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.925,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.55,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.0925,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC19 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Arena Fighters terrorizing the area!",
-      title = "Arena Takedown",
-      requirements = {
-        [1] = {
-          npcType = "ArenaFighter",
-          amount = 5,
+    ["QuestNPC17"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "arena_fighter_hunt_1",
-      rewards = {
-        money = 83500,
-        gems = 70,
-        xp = 7350000000,
-      },
-      recommendedLevel = 12000,
-      itemDrops = {
-        [1] = {
-          chance = 9,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Quincy terrorizing the area!",
+        ["title"] = "Quincy Purge",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Quincy",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 5.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "quincy_hunt_1",
+        ["rewards"] = {
+            ["money"] = 61500,
+            ["gems"] = 56,
+            ["xp"] = 5350000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 2.6,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 10750,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 8,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 4.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.3,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.3,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.14,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1.5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.85,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.16,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC15 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Academy Teachers terrorizing the area!",
-      title = "Academy Challenge",
-      requirements = {
-        [1] = {
-          npcType = "AcademyTeacher",
-          amount = 5,
+    ["QuestNPC18"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "academy_teacher_hunt_1",
-      rewards = {
-        money = 45000,
-        gems = 45,
-        xp = 3800000000,
-      },
-      recommendedLevel = 9000,
-      itemDrops = {
-        [1] = {
-          chance = 7,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Ninja terrorizing the area!",
+        ["title"] = "Ninja Slayer",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Ninja",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 4.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "ninja_hunt_1",
+        ["rewards"] = {
+            ["money"] = 72000,
+            ["gems"] = 62,
+            ["xp"] = 6200000000,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 2,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 11500,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 8.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.45,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.4,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.8,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.15,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 1.1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.12,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC12 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Strong Sorcerers terrorizing the area!",
-      title = "Strong Sorcerer Hunter",
-      requirements = {
-        [1] = {
-          npcType = "StrongSorcerer",
-          amount = 5,
+    ["QuestNPC3"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "strong_sorcerer_hunt_1",
-      rewards = {
-        money = 25000,
-        gems = 25,
-        xp = 1750641852,
-      },
-      recommendedLevel = 6250,
-      itemDrops = {
-        [1] = {
-          chance = 5.5,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the monkeys terrorizing the area!",
+        ["title"] = "Monkey Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Monkey",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 3.45,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "monkey_hunt_1",
+        ["rewards"] = {
+            ["money"] = 1250,
+            ["gems"] = 0,
+            ["xp"] = 7868470,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.35,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 250,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 2.275,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 0.55,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.3,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.13,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.03,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.85,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.5,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.085,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC8 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Winter Warden terrorizing the area!",
-      title = "Winter Warden Boss",
-      requirements = {
-        [1] = {
-          npcType = "SnowBoss",
-          amount = 1,
+    ["QuestNPC13"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "snow_hunt_2",
-      rewards = {
-        money = 9000,
-        gems = 14,
-        xp = 276288360,
-      },
-      recommendedLevel = 2000,
-      itemDrops = {
-        [1] = {
-          chance = 3.575,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Curses terrorizing the area!",
+        ["title"] = "Curse Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "Curse",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 2.75,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "curse_hunt_1",
+        ["rewards"] = {
+            ["money"] = 30000,
+            ["gems"] = 30,
+            ["xp"] = 2250641852,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.1,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 7000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 6,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 3.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.925,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.55,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.0925,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.35,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.075,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-    QuestNPC10 = {
-      accessoryDrops = {
-      },
-      description = "Defeat the Panda Sorcerer terrorizing the area!",
-      title = "Panda Sorcerer Boss",
-      requirements = {
-        [1] = {
-          npcType = "PandaMiniBoss",
-          amount = 1,
+    ["QuestNPC14"] = {
+        ["accessoryDrops"] = {
         },
-      },
-      id = "jjk_hunt_2",
-      rewards = {
-        money = 17500,
-        gems = 24,
-        xp = 740641852,
-      },
-      recommendedLevel = 4000,
-      itemDrops = {
-        [1] = {
-          chance = 4.55,
-          quantity = 1,
-          name = "Boss Key",
-          image = "rbxassetid://0",
+        ["description"] = "Defeat the Slime Warriors terrorizing the area!",
+        ["title"] = "Slime Warrior Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "SlimeWarrior",
+                ["amount"] = 5,
+            },
         },
-        [2] = {
-          minQuantity = 1,
-          name = "Common Chest",
-          chance = 3.25,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["id"] = "slime_warrior_hunt_1",
+        ["rewards"] = {
+            ["money"] = 37500,
+            ["gems"] = 38,
+            ["xp"] = 2950641852,
         },
-        [3] = {
-          minQuantity = 1,
-          name = "Rare Chest",
-          chance = 1.15,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
+        ["recommendedLevel"] = 8000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 6.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 4,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.6,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
         },
-        [4] = {
-          minQuantity = 1,
-          name = "Epic Chest",
-          chance = 0.65,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [5] = {
-          minQuantity = 1,
-          name = "Legendary Chest",
-          chance = 0.4,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-        [6] = {
-          minQuantity = 1,
-          name = "Mythical Chest",
-          chance = 0.08,
-          image = "rbxassetid://0",
-          maxQuantity = 1,
-        },
-      },
     },
-  },
+    ["QuestNPC19"] = {
+        ["accessoryDrops"] = {
+        },
+        ["description"] = "Defeat the Arena Fighters terrorizing the area!",
+        ["title"] = "Arena Takedown",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "ArenaFighter",
+                ["amount"] = 5,
+            },
+        },
+        ["id"] = "arena_fighter_hunt_1",
+        ["rewards"] = {
+            ["money"] = 83500,
+            ["gems"] = 70,
+            ["xp"] = 7350000000,
+        },
+        ["recommendedLevel"] = 12000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 9,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 5.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.6,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.85,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.16,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+        },
+    },
+    ["QuestNPC21"] = {
+        ["accessoryDrops"] = {
+        },
+        ["description"] = "Defeat the Strong Fighters terrorizing the area!",
+        ["title"] = "Fighter Takedown",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "StrongFighter",
+                ["amount"] = 5,
+            },
+        },
+        ["id"] = "strong_fighter_hunt_1",
+        ["rewards"] = {
+            ["money"] = 100000,
+            ["gems"] = 78,
+            ["xp"] = 8500000000,
+        },
+        ["recommendedLevel"] = 13000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 10,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 5.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 2.85,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 1.6,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.92,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.18,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+        },
+    },
+    ["QuestNPC12"] = {
+        ["accessoryDrops"] = {
+        },
+        ["description"] = "Defeat the Strong Sorcerers terrorizing the area!",
+        ["title"] = "Strong Sorcerer Hunter",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "StrongSorcerer",
+                ["amount"] = 5,
+            },
+        },
+        ["id"] = "strong_sorcerer_hunt_1",
+        ["rewards"] = {
+            ["money"] = 25000,
+            ["gems"] = 25,
+            ["xp"] = 1750641852,
+        },
+        ["recommendedLevel"] = 6250,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 5.5,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 3.45,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.35,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.85,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.5,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.085,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+        },
+    },
+    ["QuestNPC8"] = {
+        ["accessoryDrops"] = {
+        },
+        ["description"] = "Defeat the Winter Warden terrorizing the area!",
+        ["title"] = "Winter Warden Boss",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "SnowBoss",
+                ["amount"] = 1,
+            },
+        },
+        ["id"] = "snow_hunt_2",
+        ["rewards"] = {
+            ["money"] = 9000,
+            ["gems"] = 14,
+            ["xp"] = 276288360,
+        },
+        ["recommendedLevel"] = 2000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 3.575,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 2.75,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.1,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.35,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.075,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+        },
+    },
+    ["QuestNPC10"] = {
+        ["accessoryDrops"] = {
+        },
+        ["description"] = "Defeat the Panda Sorcerer terrorizing the area!",
+        ["title"] = "Panda Sorcerer Boss",
+        ["requirements"] = {
+            [1] = {
+                ["npcType"] = "PandaMiniBoss",
+                ["amount"] = 1,
+            },
+        },
+        ["id"] = "jjk_hunt_2",
+        ["rewards"] = {
+            ["money"] = 17500,
+            ["gems"] = 24,
+            ["xp"] = 740641852,
+        },
+        ["recommendedLevel"] = 4000,
+        ["itemDrops"] = {
+            [1] = {
+                ["chance"] = 4.55,
+                ["quantity"] = 1,
+                ["name"] = "Boss Key",
+                ["image"] = "rbxassetid://0",
+            },
+            [2] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Common Chest",
+                ["chance"] = 3.25,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [3] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Rare Chest",
+                ["chance"] = 1.15,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [4] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Epic Chest",
+                ["chance"] = 0.65,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [5] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Legendary Chest",
+                ["chance"] = 0.4,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+            [6] = {
+                ["minQuantity"] = 1,
+                ["name"] = "Mythical Chest",
+                ["chance"] = 0.08,
+                ["image"] = "rbxassetid://0",
+                ["maxQuantity"] = 1,
+            },
+        },
+    },
 }
